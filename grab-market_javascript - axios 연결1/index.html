@@ -1,0 +1,83 @@
+<html>
+    <head>
+        <title>그랩마켓</title>
+        <link href="index.css" type="text/css" rel="stylesheet" />
+        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    </head>
+    <body>
+        <div id="header">
+            <div id="header-area">
+                <img src="images/icons/logo.png" />
+            </div>
+        </div>
+        <div id="body">
+            <div id="banner">
+                <img src="images/banners/banner1.png" />
+            </div>
+            <h1>판매되는 상품들</h1>
+            <div id="product-list"></div>
+        </div>
+        <div id="footer"></div>
+    </body>
+    <script>
+        axios.get('https://b6c9f9db-6336-4fa5-8869-812394213876.mock.pstmn.io/products') //해당주소로 통신
+        .then(function(result){
+            console.log('결과 :', result);
+            const products = result.data.products;
+            //밑에있던 product 를 잘라왔다. error 를 막기위해
+            let productsHtml = "";
+            for (var i = 0; i < products.length; i++) {
+                let product = products[i];
+                productsHtml =
+                    productsHtml +
+                    '<div class="product-card">' +
+                    "<div>" +
+                    '<img class="product-img" src="' +
+                    product.imageUrl +
+                    '" />' +
+                    "</div>" +
+                    '<div class="product-contents">' +
+                    '<span class="product-name">' +
+                    product.name +
+                    "</span>" +
+                    '<span class="product-price">' +
+                    product.price +
+                    "원" +
+                    "</span>" +
+                    '<div class="product-seller">' +
+                    '<img class="product-avatar" src="images/icons/avatar.png" />' +
+                    "<span>" +
+                    product.seller +
+                    "</span>" +
+                    "</div>" +
+                    "</div>" +
+                    "</div>";
+            }
+            document.querySelector("#product-list").innerHTML = productsHtml;
+        }).catch(function(error){
+            console.error('에러 : ', result);
+        })
+        /* axios 서버에 있는 내용이기때문에 삭제
+            var products = [
+            {
+                name: "농구공",
+                price: 10000,
+                seller: "Jordan",
+                imageUrl: "images/products/basketball1.jpeg",
+            },
+            {
+                name: "축구공",
+                price: 50000,
+                seller: "Jordan",
+                imageUrl: "images/products/soccerball1.jpg",
+            },
+            {
+                name: "키보드",
+                price: 15000,
+                seller: "Grab",
+                imageUrl: "images/products/keyboard1.jpg",
+            },
+        ];*/
+        
+    </script>
+</html>
