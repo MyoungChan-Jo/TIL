@@ -1,0 +1,9 @@
+windows powerShell 을 통한 npm upgrade 방법
+1. 관리자모드로 windows powerShell 실행
+2. Set-ExecutionPolicy Unrestricted -Scope CurrentUser -Force 
+3. npm install --global --production npm-windows-upgrade
+4. npm-windows-upgrade
+하면 최종적으로 npm 업그레이드가 된다.
+해당 사안은 
+자동적으로 npm 이 업그레이드 되지 않는 이슈로 인한
+문제가 발생했을시 시행하는 절차이다.
